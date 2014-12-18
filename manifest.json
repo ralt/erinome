@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+    "name": "pgp-ext",
+    "version": "1.0.0",
+    "description": "Short description",
+    "background": {
+        "scripts": [ "pgp-ext.js", "background.js" ]
+    },
+    "browser_action": {
+        "name": "pgp-ext",
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "tabs", "http://*/*", "nativeMessaging"
+    ]
+}
