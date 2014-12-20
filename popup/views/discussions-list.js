@@ -22,10 +22,7 @@ function setupDiscussions(container, viewManager, storageManager) {
 }
 
 function getUsers(storageManager) {
-    return storageManager.get(null).then(function(s) {
-	console.log(s);
-	return storageManager.get('users');
-    });
+    return storageManager.get('users').get('users');
 }
 
 function createDiscussions(discussionsContainer, viewManager) {
@@ -45,13 +42,16 @@ function createDiscussion(user, viewManager) {
     div.textContent = user.name;
     div.addEventListener('click', function() {
 	viewManager.setView('discussion');
-	viewManager.getView('discussion').setUser(user).run();
+	var discussion = viewManager.getView('discussion');
+	discussion.setUser(user);
+	discussion.run();
     });
+    return div;
 }
 
 function setupAddUserForm(storageManager) {
-    var name = document.querySelector('add-user-name');
-    var email = document.querySelector('add-user-email');
+    var name = document.querySelector('#add-user-name');
+    var email = document.querySelector('#add-user-email');
     document
 	.querySelector('#add-user-submit')
 	.addEventListener('click', addUser(storageManager, name, email));
@@ -62,12 +62,10 @@ function addUser(storageManager, nameInput, emailInput) {
 	e.preventDefault();
 
 	storageManager.get('users').then(function(users) {
-	    users[nameInput.value] = {
+	    users.users[emailInput.value] = {
 		name: nameInput.value,
 		email: emailInput.value
 	    };
-	    return users;
-	}).then(function(users) {
 	    return storageManager.set(users);
 	});
     };
