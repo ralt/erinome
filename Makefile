@@ -25,3 +25,6 @@ debug-popup:
 
 debug-miaou:
 	./node_modules/.bin/browserify -d miaou/index.js > miaou.js
+
+.PHONY: background popup miaou debug-background debug-popup debug-miaou
+

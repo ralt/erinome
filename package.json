@@ -15,5 +15,8 @@
   "devDependencies": {
     "browserify": "^7.0.3",
     "uglify-js2": "^2.1.11"
+  },
+  "dependencies": {
+    "bluebird": "^2.4.0"
   }
 }
