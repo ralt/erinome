@@ -50,9 +50,11 @@ scenario the message is being passed.
   - [x] content_script -> background
   - [ ] background -> native
   - [ ] native -> background
+  - [ ] background storage of decrypted messages
   - [ ] background -> popup
 - [ ] I want to send an encrypted message:
   - [x] popup -> background
+  - [ ] background storage of decrypted messages
   - [ ] background -> native
   - [ ] native -> background
   - [x] background -> content_script
