@@ -7,7 +7,14 @@
         "name": "pgp-ext",
         "default_popup": "popup.html"
     },
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "content_scripts": [{
+        "matches": ["*://dystroy.org/miaou/*"],
+        "js": ["miaou.js"]
+    }],
     "permissions": [
-        "tabs", "http://*/*", "nativeMessaging"
+        "*://dystroy.org/miaou/*", "nativeMessaging"
     ]
 }
