@@ -44,6 +44,22 @@ For these listeners, the objects exchanged must have an `action` key,
 that will define the action to execute, and will tell in which
 scenario the message is being passed.
 
+## Implemented communications
+
+- [ ] Miaou user sends me a message:
+  - [x] content_script -> background
+  - [ ] background -> native
+  - [ ] native -> background
+  - [ ] background -> popup
+- [ ] I want to send an encrypted message:
+  - [x] popup -> background
+  - [ ] background -> native
+  - [ ] native -> background
+  - [x] background -> content_script
+- [ ] I want to get decrypted messages that were sent to me:
+  - [ ] popup -> background
+  - [ ] background -> popup
+
 ## License
 
 MIT license.
