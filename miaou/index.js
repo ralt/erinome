@@ -35,7 +35,8 @@
     }
 
     function handleText(child) {
-	var text = child.innerText; // innerText préserve les \n contrairement à textContent...
+	// innerText keeps the \n while textContent doesn't
+	var text = child.innerText;
 	message = text.match(new RegExp('#pgp\n@' + name + '\n(.*)'));
 	if (!message) return;
 	
