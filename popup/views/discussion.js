@@ -36,8 +36,8 @@ function setup(user, communicator) {
 	    action: 'encrypt',
 	    email: user.email,
 	    message: inputElement.value
-	}).then(function() {
-	    inputElement.value = '';
 	});
+
+	inputElement.value = '';
     };
 }

@@ -1,5 +1,6 @@
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-});
+'use strict';
+
+var discussions = {};
 
 var port;
 port = chrome.runtime.connectNative('com.margaine.pgp_ext_app');
@@ -14,3 +15,17 @@ port.onMessage.addListener(function(obj) {
 	});
     }
 });
+
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    if (message.action === 'encrypt') {
+	return encrypt(port, message, discussions);
+    }
+});
+
+function encrypt(port, message, discussions) {
+    if (!discussions[message.email]) {
+	discussions[message.email] = [];
+    }
+    discussions[message.email].push({type: 'me', message: message.message});
+    port.postMessage(message);
+}

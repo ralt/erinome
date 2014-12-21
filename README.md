@@ -54,9 +54,9 @@ scenario the message is being passed.
   - [ ] background -> popup
 - [ ] I want to send an encrypted message:
   - [x] popup -> background
-  - [ ] background storage of decrypted messages
-  - [ ] background -> native
-  - [ ] native -> background
+  - [x] background storage of decrypted messages
+  - [x] background -> native
+  - [x] native -> background
   - [x] background -> content_script
 - [ ] I want to get decrypted messages that were sent to me:
   - [ ] popup -> background

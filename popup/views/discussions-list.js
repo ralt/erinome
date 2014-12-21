@@ -27,6 +27,7 @@ function getUsers(storageManager) {
 
 function createDiscussions(discussionsContainer, viewManager) {
     return function(users) {
+	if (!users) return;
 	if (!Object.keys(users).length) return;
 	
 	Object.keys(users).forEach(function(user) {
@@ -62,6 +63,7 @@ function addUser(storageManager, nameInput, emailInput) {
 	e.preventDefault();
 
 	storageManager.get('users').then(function(users) {
+	    users.users = users.users || {};
 	    users.users[emailInput.value] = {
 		name: nameInput.value,
 		email: emailInput.value
