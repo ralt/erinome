@@ -5,7 +5,7 @@ module.exports = function(viewManager, storageManager) {
     var element = document.querySelector('#discussions-list');
 
     setupDiscussions(element, viewManager, storageManager);
-    setupAddUserForm(storageManager);
+    setupAddUserForm(storageManager, [element, viewManager, storageManager]);
 
     return {
 	getName: function() {
@@ -50,15 +50,15 @@ function createDiscussion(user, viewManager) {
     return div;
 }
 
-function setupAddUserForm(storageManager) {
+function setupAddUserForm(storageManager, initArgs) {
     var name = document.querySelector('#add-user-name');
     var email = document.querySelector('#add-user-email');
     document
 	.querySelector('#add-user-submit')
-	.addEventListener('click', addUser(storageManager, name, email));
+	.addEventListener('click', addUser(storageManager, name, email, initArgs));
 }
 
-function addUser(storageManager, nameInput, emailInput) {
+function addUser(storageManager, nameInput, emailInput, initArgs) {
     return function(e) {
 	e.preventDefault();
 
@@ -68,7 +68,23 @@ function addUser(storageManager, nameInput, emailInput) {
 		name: nameInput.value,
 		email: emailInput.value
 	    };
-	    return storageManager.set(users);
+	    return storageManager.set(users).then(confirmAddUser(nameInput, emailInput, initArgs));
 	});
     };
+}
+
+function confirmAddUser(nameInput, emailInput, initArgs) {
+    return function() {
+	nameInput.value = '';
+	emailInput.value = '';
+	deleteDiscussions(initArgs[0]);
+	setupDiscussions.apply(null, initArgs);
+    };
+}
+
+function deleteDiscussions(container) {
+    var discussions = container.querySelectorAll('.discussion');
+    for (var i = 0; i < discussions.length; i++) {
+	container.removeChild(discussions[i]);
+    }
 }
