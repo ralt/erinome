@@ -2,7 +2,8 @@
     var messages = document.querySelector('#messages');
     if (!messages) return;
 
-    var name = 'Florian'; // @todo
+    var me = JSON.parse(document.querySelector('#locals').innerHTML).me;
+    var name = me.name;
 
     var observer = new MutationObserver(function(mutations) {
 	var addedNodes;
@@ -41,7 +42,7 @@
 	message = text.match(new RegExp('#pgp@' + name + '\n(.*)'));
 	if (!message) return;
 
-	chrome.runtime.sendMessage({action: 'decrypt', message: message[1]});
+	chrome.runtime.sendMessage({action: 'decrypt', message: message[1], name: name});
     }
 
     var inputTextarea = document.querySelector('#input');
@@ -50,9 +51,14 @@
     chrome.runtime.onMessage.addListener(function(request) {
 	if (request.type !== 'encrypted') return;
 
-	inputTextarea.value = '#pgp' + '@' + request.name + '\n' +
-	    request.message.join('\n');
+	var message = ['#pgp' + '@' + request.name].concat(request.message);
+
+	inputTextarea.value = message.map(addSpaces).join('\n');
 	sendButton.click();
     });
+
+    function addSpaces(line) {
+	return '    ' + line;
+    }
 
 }());

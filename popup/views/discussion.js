@@ -4,7 +4,7 @@ module.exports = function(communicator) {
     var name = 'discussion';
     var element = document.querySelector('#discussion');
     var user;
-    
+
     return {
 	getName: function() {
 	    return name;
@@ -29,13 +29,14 @@ function setup(user, communicator) {
     var submitElement = byId('send');
 
     nameElement.textContent = user.name;
-    
+
     // Voluntarily using .onclick instead of addEventListener; I want only one.
     submitElement.onclick = function() {
 	communicator.send({
 	    action: 'encrypt',
 	    email: user.email,
-	    message: inputElement.value
+	    message: inputElement.value,
+	    name: user.name
 	});
 
 	inputElement.value = '';

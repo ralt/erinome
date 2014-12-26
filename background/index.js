@@ -7,7 +7,7 @@ var port = chrome.runtime.connectNative('com.margaine.pgp_ext_app');
 port.onMessage.addListener(function(obj) {
     if (obj.action === 'encrypted') {
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-	    chrome.tabs.sendMessage(tabs[0].id, {type: 'encrypted', message: obj.text, name: 'Florian'});
+	    chrome.tabs.sendMessage(tabs[0].id, {type: 'encrypted', message: obj.text, name: obj.name});
 	});
     }
 });
