@@ -41,4 +41,14 @@ function setup(user, communicator) {
 
 	inputElement.value = '';
     };
+
+    getDiscussions(user);
+}
+
+function getDiscussions(user) {
+    chrome.runtime.onMessage.addListener(function(request) {
+	if (request.action === 'decrypted' && request.sender === user.name) {
+	    document.getElementById('messages').innerHTML += '<div class="message">' + request.message + '</div>';
+	}
+    });
 }

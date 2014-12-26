@@ -39,10 +39,15 @@
     function handleText(child) {
 	// innerText keeps the \n while textContent doesn't
 	var text = child.innerText;
-	message = text.match(new RegExp('#pgp@' + name + '\n(.*)'));
+	message = text.match(new RegExp('#pgp@' + name + '\\n([\\s\\S]*)'));
 	if (!message) return;
 
-	chrome.runtime.sendMessage({action: 'decrypt', message: message[1], name: name});
+	chrome.runtime.sendMessage({
+	    action: 'decrypt',
+	    message: message[1],
+	    name: name,
+	    sender: child.previousElementSibling.textContent
+	});
     }
 
     var inputTextarea = document.querySelector('#input');
