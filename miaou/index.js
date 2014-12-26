@@ -40,21 +40,19 @@
 	var text = child.innerText;
 	message = text.match(new RegExp('#pgp@' + name + '\n(.*)'));
 	if (!message) return;
-	
+
 	chrome.runtime.sendMessage({action: 'decrypt', message: message[1]});
     }
 
+    var inputTextarea = document.querySelector('#input');
+    var sendButton = document.querySelector('#send');
     // Scenario "I want to send an encrypted message"
     chrome.runtime.onMessage.addListener(function(request) {
 	if (request.type !== 'encrypted') return;
-	
-	var pendingMessages = document.querySelector('#pending-messages');
-	
-	var div = document.createElement('div');
-	div.textContent = '#pgp' + '@' + request.name + '\n' +
+
+	inputTextarea.value = '#pgp' + '@' + request.name + '\n' +
 	    request.message.join('\n');
-	
-	pendingMessages.appendChild(div);
+	sendButton.click();
     });
 
 }());

@@ -2,11 +2,7 @@
 
 var discussions = {};
 
-var port;
-port = chrome.runtime.connectNative('com.margaine.pgp_ext_app');
-port.onDisconnect.addListener(function() {
-    alert('There was a problem with the native application connection.');
-});
+var port = chrome.runtime.connectNative('com.margaine.pgp_ext_app');
 
 port.onMessage.addListener(function(obj) {
     if (obj.action === 'encrypted') {
@@ -16,7 +12,11 @@ port.onMessage.addListener(function(obj) {
     }
 });
 
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+port.onDisconnect.addListener(function() {
+    alert('There was a problem with the native application connection.');
+});
+
+chrome.runtime.onMessage.addListener(function(message) {
     if (message.action === 'encrypt') {
 	return encrypt(port, message, discussions);
     }
