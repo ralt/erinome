@@ -52,7 +52,7 @@ scenario the message is being passed.
   - [ ] native -> background
   - [ ] background storage of decrypted messages
   - [ ] background -> popup
-- [ ] I want to send an encrypted message:
+- [x] I want to send an encrypted message:
   - [x] popup -> background
   - [x] background storage of decrypted messages
   - [x] background -> native
