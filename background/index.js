@@ -38,9 +38,6 @@ port.onDisconnect.addListener(function() {
 });
 
 chrome.runtime.onMessage.addListener(function(message) {
-    if (!discussions[message.email]) {
-	discussions[message.email] = [];
-    }
     if (message.action === 'encrypt') {
 	encrypt(message, discussions);
     }
@@ -50,6 +47,9 @@ chrome.runtime.onMessage.addListener(function(message) {
 });
 
 function encrypt(message, discussions) {
+    if (!discussions[message.email]) {
+	discussions[message.email] = [];
+    }
     discussions[message.email].push({
 	type: 'me',
 	message: message.message
@@ -58,5 +58,15 @@ function encrypt(message, discussions) {
 }
 
 function decrypt(port, message, discussions) {
-    port.postMessage(message);
+    chrome.runtime.sendMessage({
+	action: 'getEmail',
+	name: message.name
+    }, function(response) {
+	port.postMessage({
+	    action: 'decrypt',
+	    name: message.name,
+	    email: response.email,
+	    message: message.message
+	});
+    });
 }

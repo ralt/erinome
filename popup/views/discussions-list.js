@@ -6,6 +6,7 @@ module.exports = function(viewManager, storageManager) {
 
     setupDiscussions(element, viewManager, storageManager);
     setupAddUserForm(storageManager, [element, viewManager, storageManager]);
+    setupUsersListener(storageManager);
 
     return {
 	getName: function() {
@@ -16,6 +17,20 @@ module.exports = function(viewManager, storageManager) {
 	}
     };
 };
+
+function setupUsersListener(storageManager) {
+    chrome.runtime.onMessage.addListener(function(request, _, sendResponse) {
+	if (request.action === 'getEmail') {
+	    getUsers(storageManager).then(function(users) {
+		if (!users) return;
+
+		sendResponse(Object.keys(users).find(function(user) {
+		    return user.name === request.name;
+		}));
+	    });
+	}
+    });
+}
 
 function setupDiscussions(container, viewManager, storageManager) {
     return getUsers(storageManager).then(createDiscussions(container, viewManager));
