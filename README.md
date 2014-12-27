@@ -48,10 +48,10 @@ scenario the message is being passed.
 
 - [ ] Miaou user sends me a message:
   - [x] content_script -> background
-  - [ ] background -> native
-  - [ ] native -> background
-  - [ ] background storage of decrypted messages
-  - [ ] background -> popup
+  - [x] background -> native
+  - [x] native -> background
+  - [x] background storage of decrypted messages
+  - [x] background -> popup
 - [x] I want to send an encrypted message:
   - [x] popup -> background
   - [x] background storage of decrypted messages
@@ -59,8 +59,8 @@ scenario the message is being passed.
   - [x] native -> background
   - [x] background -> content_script
 - [ ] I want to get decrypted messages that were sent to me:
-  - [ ] popup -> background
-  - [ ] background -> popup
+  - [x] popup -> background
+  - [x] background -> popup
 
 ## License
 
