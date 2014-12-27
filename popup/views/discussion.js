@@ -48,7 +48,18 @@ function setup(user, communicator) {
 function getDiscussions(user) {
     chrome.runtime.onMessage.addListener(function(request) {
 	if (request.action === 'decrypted' && request.sender === user.name) {
-	    document.getElementById('messages').innerHTML += '<div class="message">' + request.message + '</div>';
+	    addMessage(request.message);
 	}
     });
+
+    chrome.runtime.sendMessage({
+	action: 'getMessages',
+	user: user
+    }, function(response) {
+	response.messages.forEach(addMessage);
+    });
+}
+
+function addMessage(message) {
+    document.getElementById('messages').innerHTML += '<div class="message">' + message + '</div>';
 }
