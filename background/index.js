@@ -1,5 +1,11 @@
 'use strict';
 
+var storage = require('../lib/storage');
+var communicator = require('../lib/communicator');
+var user = require('./user')(storage, communicator);
+
+user.setupListeners();
+
 var discussions = {};
 
 var port = chrome.runtime.connectNative('com.margaine.pgp_ext_app');
@@ -24,8 +30,8 @@ function addMessage(discussions, message) {
     if (!discussions[message.sender]) {
 	discussions[message.sender] = [];
     }
-    chrome.runtime.sendMessage({
-	action: 'decrypted',
+    communicator.send({
+    	action: 'decrypted',
 	message: message.text,
 	sender: message.sender
     });
@@ -40,21 +46,18 @@ port.onDisconnect.addListener(function() {
     alert('There was a problem with the native application connection.');
 });
 
-chrome.runtime.onMessage.addListener(function(message, _, sendResponse) {
-    if (message.action === 'encrypt') {
-	encrypt(message, discussions);
-	return;
-    }
-    if (message.action === 'decrypt') {
-	decrypt(message, discussions);
-	return;
-    }
-    if (message.action === 'getMessages') {
-	sendResponse(discussions[message.user.name].map(function(obj) {
-	    return obj.message;
-	}));
-	return;
-    }
+communicator.on('encrypt', function(message) {
+    encrypt(message, discussions);
+});
+
+communicator.on('decrypt', function(message) {
+    decrypt(message, discussions);
+});
+
+communicator.on('getMessages', function(message, cb) {
+    cb(discussions[message.user.name].map(function(obj) {
+	return obj.message;
+    }));
 });
 
 function encrypt(message, discussions) {
@@ -69,16 +72,15 @@ function encrypt(message, discussions) {
 }
 
 function decrypt(message, discussions) {
-//    chrome.runtime.sendMessage({
-//	action: 'getEmail',
-//	name: message.name
-//    }, function(response) {
-    var response = {email: 'florian.margaine@commerceguys.com'};
-	port.postMessage({
+    communicator.send({
+	action: 'getByName',
+	name: message.name
+    }, function(response) {
+    	port.postMessage({
 	    action: 'decrypt',
 	    name: message.name,
 	    email: response.email,
 	    message: message.message
 	});
-//    });
+    });
 }

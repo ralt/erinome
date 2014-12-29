@@ -42,17 +42,17 @@ function setup(user, communicator) {
 	inputElement.value = '';
     };
 
-    getDiscussions(user);
+    getDiscussions(user, communicator);
 }
 
-function getDiscussions(user) {
-    chrome.runtime.onMessage.addListener(function(request) {
-	if (request.action === 'decrypted' && request.sender === user.name) {
+function getDiscussions(user, communicator) {
+    communicator.on('decrypted', function(request) {
+	if (request.sender === user.name) {
 	    addMessage(request.message);
 	}
     });
 
-    chrome.runtime.sendMessage({
+    communicator.send({
 	action: 'getMessages',
 	user: user
     }, function(messages) {
