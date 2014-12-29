@@ -55,8 +55,8 @@ function getDiscussions(user) {
     chrome.runtime.sendMessage({
 	action: 'getMessages',
 	user: user
-    }, function(response) {
-	response.messages.forEach(addMessage);
+    }, function(messages) {
+	messages.forEach(addMessage);
     });
 }
 

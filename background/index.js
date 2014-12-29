@@ -5,7 +5,7 @@ var discussions = {};
 var port = chrome.runtime.connectNative('com.margaine.pgp_ext_app');
 
 port.onMessage.addListener(function(obj) {
-    var getTabOpt = {active: true, currentWinow: true};
+    var getTabOpt = {active: true, currentWindow: true};
     if (obj.action === 'encrypted') {
 	chrome.tabs.query(getTabOpt, function(tabs) {
 	    chrome.tabs.sendMessage(tabs[0].id, {
@@ -21,6 +21,9 @@ port.onMessage.addListener(function(obj) {
 });
 
 function addMessage(discussions, message) {
+    if (!discussions[message.sender]) {
+	discussions[message.sender] = [];
+    }
     chrome.runtime.sendMessage({
 	action: 'decrypted',
 	message: message.text,
@@ -47,7 +50,7 @@ chrome.runtime.onMessage.addListener(function(message, _, sendResponse) {
 	return;
     }
     if (message.action === 'getMessages') {
-	sendResponse(discussions[message.user.email].map(function(obj) {
+	sendResponse(discussions[message.user.name].map(function(obj) {
 	    return obj.message;
 	}));
 	return;
@@ -65,16 +68,17 @@ function encrypt(message, discussions) {
     port.postMessage(message);
 }
 
-function decrypt(port, message, discussions) {
-    chrome.runtime.sendMessage({
-	action: 'getEmail',
-	name: message.name
-    }, function(response) {
+function decrypt(message, discussions) {
+//    chrome.runtime.sendMessage({
+//	action: 'getEmail',
+//	name: message.name
+//    }, function(response) {
+    var response = {email: 'florian.margaine@commerceguys.com'};
 	port.postMessage({
 	    action: 'decrypt',
 	    name: message.name,
 	    email: response.email,
 	    message: message.message
 	});
-    });
+//    });
 }
