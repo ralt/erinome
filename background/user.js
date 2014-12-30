@@ -16,7 +16,7 @@ function setupListeners(storage, communicator) {
 
 function setupGetUsers(storage, communicator) {
     communicator.on('getUsers', function(_, cb) {
-	cb(storage.get('users').get('users'));
+	storage.get('users').get('users').then(cb);
     });
 }
 
