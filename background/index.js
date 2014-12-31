@@ -72,14 +72,11 @@ function encrypt(message, discussions) {
 }
 
 function decrypt(message, discussions) {
-    communicator.send({
-	action: 'getByName',
-	name: message.name
-    }, function(response) {
-    	port.postMessage({
+    user.getByName(message.name).then(function(user) {
+	port.postMessage({
 	    action: 'decrypt',
 	    name: message.name,
-	    email: response.email,
+	    email: user.email,
 	    message: message.message
 	});
     });

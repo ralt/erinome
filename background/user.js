@@ -4,7 +4,8 @@ module.exports = function(storage, communicator) {
     return {
 	setupListeners: function() {
 	    return setupListeners(storage, communicator);
-	}
+	},
+	getByName: getByName(storage)
     };
 };
 
@@ -22,13 +23,23 @@ function setupGetUsers(storage, communicator) {
 
 function setupGetByName(storage, communicator) {
     communicator.on('getByName', function(obj, cb) {
+	return getByName(obj.name).then(cb);
 	storage.get('users').get('users').then(function(users) {
-	    for (var i = 0; i < users.length; i++) {
-		if (users[i].name === obj.name) return cb(users[i].name);
-	    }
-	    return cb();
+
 	}).done();
     });
+}
+
+function getByName(storage) {
+    return function(name) {
+	return storage.get('users').get('users').then(function(users) {
+	    for (var key in users) {
+		if (users.hasOwnProperty(key)) {
+		    if (users[key].name === name) return users[key];
+		}
+	    }
+	});
+    };
 }
 
 function setupAddUser(storage, communicator) {
