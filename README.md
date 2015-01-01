@@ -46,7 +46,7 @@ scenario the message is being passed.
 
 ## Implemented communications
 
-- [ ] Miaou user sends me a message:
+- [x] Miaou user sends me a message:
   - [x] content_script -> background
   - [x] background -> native
   - [x] native -> background
@@ -58,9 +58,24 @@ scenario the message is being passed.
   - [x] background -> native
   - [x] native -> background
   - [x] background -> content_script
-- [ ] I want to get decrypted messages that were sent to me:
+- [x] I want to get decrypted messages that were sent to me:
   - [x] popup -> background
   - [x] background -> popup
+
+## Roadmap before release
+
+- Make the popup pretty (bootstrap)
+- Add the "you sent a message" messages
+- Make it clear who sends a message to who (add names in the discussion)
+- Make it possible to sign and encrypt at the same time
+- Integrate with GMail
+  - Find a way to mix miaou and gmail in popup
+  - Add buttons in gmail interface
+    - Verify
+	- Sign
+	- Encrypt
+	- Sign and encrypt
+	- Decrypt
 
 ## License
 
