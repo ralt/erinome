@@ -3,15 +3,42 @@
   <head>
     <meta charset="utf-8">
     <title>pgp-ext</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style.css">
   </head>
   <body>
     <div class="view" id="discussions-list">
-      <div class="add-user">
-	<input id="add-user-name">
-	<input id="add-user-email">
-	<input type="submit" value="Add user" id="add-user-submit">
-      </div>
+      <fieldset class="add-user" id="add-user">
+	<legend>
+	  Add user
+	</legend>
+	<div class="form-group">
+	  <input id="add-user-name" class="form-control" placeholder="Miaou username">
+	</div>
+	<div class="form-group">
+	  <input id="add-user-email" class="form-control" placeholder="GnuPG Email" type="email">
+	</div>
+	<input class="btn btn-default form-control" type="submit" value="Add user" id="add-user-submit">
+      </fieldset>
+      <fieldset>
+	<legend>
+	  Discussions
+	</legend>
+	<table class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th>
+		Miaou username
+	      </th>
+	      <th>
+		GnuPG Email
+	      </th>
+	    </tr>
+	  </thead>
+	  <tbody id="discussions-list-users">
+	  </tbody>
+	</table>
+      </fieldset>
     </div>
 
     <div class="view" id="discussion">

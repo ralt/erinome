@@ -1,0 +1,13 @@
+body {
+    width: 500px;
+    padding: 10px;
+}
+
+.discussion,
+fieldset.collapsible legend {
+    cursor: pointer;
+}
+
+.btn-default {
+    margin-bottom: 10px;
+}

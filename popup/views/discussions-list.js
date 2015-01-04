@@ -1,11 +1,15 @@
 'use strict';
 
+var makeCollapsible = require('../ui/collapsible.js');
+
 module.exports = function(viewManager, communicator) {
     var name = 'discussions-list';
     var element = document.querySelector('#discussions-list');
+    var discussionsContainer = document.querySelector('#discussions-list-users');
 
-    setupDiscussions(element, viewManager, communicator);
-    setupAddUserForm(communicator, [element, viewManager, communicator]);
+    setupDiscussions(discussionsContainer, viewManager, communicator);
+    setupAddUserForm(communicator, [discussionsContainer, viewManager, communicator]);
+    makeCollapsible(document.querySelector('#add-user')).collapse();
 
     return {
 	getName: function() {
@@ -36,16 +40,24 @@ function createDiscussions(discussionsContainer, viewManager) {
 }
 
 function createDiscussion(user, viewManager) {
-    var div = document.createElement('div');
-    div.className = 'discussion';
-    div.textContent = user.name;
-    div.addEventListener('click', function() {
+    var tr = document.createElement('tr');
+    tr.className = 'discussion';
+    tr.addEventListener('click', function() {
 	viewManager.setView('discussion');
 	var discussion = viewManager.getView('discussion');
 	discussion.setUser(user);
 	discussion.run();
     });
-    return div;
+
+    var userTd = document.createElement('td');
+    userTd.textContent = user.name;
+    tr.appendChild(userTd);
+
+    var emailTd = document.createElement('td');
+    emailTd.textContent = user.email;
+    tr.appendChild(emailTd);
+
+    return tr;
 }
 
 function setupAddUserForm(communicator, initArgs) {
