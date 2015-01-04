@@ -2,14 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Erinome</title>
+    <title>erinome</title>
     <link rel="stylesheet" href="assets/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
   </head>
   <body>
 
     <div class="title">
-      Erinome
+      erinome
     </div>
 
     <div class="view" id="discussions-list">
@@ -46,12 +46,18 @@
       </fieldset>
     </div>
 
-    <div class="view" id="discussion">
+    <div class="view container" id="discussion">
       <div class="back" id="back">Back</div>
-      <div id="name"></div>
-      <div id="messages"></div>
-      <textarea name="input" id="input"></textarea>
-      <input type="submit" value="Send" id="send">
+      <div class="row">
+	<label>Conversation with <span id="name"></span></label>
+      </div>
+      <div class="row">
+	<div id="messages"></div>
+      </div>
+      <div class="row">
+	<textarea name="input" id="input" class="form-control"></textarea>
+	<input type="submit" value="Send" id="send" class="form-control btn btn-default">
+      </div>
     </div>
     <script src="popup.js"></script>
   </body>

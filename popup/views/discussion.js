@@ -70,5 +70,6 @@ function getDiscussions(user, communicator) {
 }
 
 function addMessage(message) {
-    document.getElementById('messages').innerHTML += '<div class="message">' + message + '</div>';
+    // @todo use the "me" class when the message is sent by me.
+    document.getElementById('messages').innerHTML += '<div class="message sender">' + message + '</div>';
 }

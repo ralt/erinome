@@ -4,13 +4,20 @@ body {
 }
 
 .discussion,
+.back,
 fieldset.collapsible legend {
     cursor: pointer;
 }
 
+.back,
 fieldset.collapsible legend {
     text-decoration: underline;
     color: #666;
+}
+
+.back {
+    float: right;
+    font-size: 0.85em;
 }
 
 .btn-default {
@@ -21,4 +28,23 @@ fieldset.collapsible legend {
     text-align: center;
     font-size: 26px;
     text-shadow: 1px 2px 0 #ccc;
+}
+
+.message {
+    border: 1px solid #ccc;
+    margin: 5px 0;
+    padding: 5px;
+}
+
+.message::before {
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+.message.sender::before {
+    content: "S/he said: ";
+}
+
+.message.me::before {
+    content: "I said: ";
 }
