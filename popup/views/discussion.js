@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(communicator) {
+module.exports = function(viewsManager, communicator) {
     var name = 'discussion';
     var element = document.querySelector('#discussion');
     var user;
@@ -17,9 +17,18 @@ module.exports = function(communicator) {
 	},
 	run: function() {
 	    setup(user, communicator);
+	    setupBackButton(viewsManager);
 	}
     };
 };
+
+function setupBackButton(viewsManager) {
+    var backElement = document.querySelector('#back');
+
+    backElement.onclick = function() {
+	viewsManager.setView('discussions-list');
+    };
+}
 
 // @todo use an HTML template instead of reusing the same DOM element
 function setup(user, communicator) {

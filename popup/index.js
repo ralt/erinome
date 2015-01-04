@@ -7,7 +7,7 @@ var viewsManager = require('./views-manager');
 var DiscussionsListView = require('./views/discussions-list');
 var discussionsListView = DiscussionsListView(viewsManager, communicator);
 var DiscussionView = require('./views/discussion');
-var discussionView = DiscussionView(communicator);
+var discussionView = DiscussionView(viewsManager, communicator);
 
 viewsManager.add(discussionsListView);
 viewsManager.add(discussionView);

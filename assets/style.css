@@ -8,6 +8,17 @@ fieldset.collapsible legend {
     cursor: pointer;
 }
 
+fieldset.collapsible legend {
+    text-decoration: underline;
+    color: #666;
+}
+
 .btn-default {
     margin-bottom: 10px;
+}
+
+.title {
+    text-align: center;
+    font-size: 26px;
+    text-shadow: 1px 2px 0 #ccc;
 }
