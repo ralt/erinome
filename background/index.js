@@ -14,7 +14,7 @@ var nativeActions = {
     decrypted: require('./native-actions/decrypted')(communicator, discussions)
 };
 
-var port = chrome.runtime.connectNative('com.margaine.pgp_ext_app');
+var port = chrome.runtime.connectNative('com.margaine.erinome_native');
 
 native.setup(port, nativeActions);
 
