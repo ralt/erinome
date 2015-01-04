@@ -64,9 +64,11 @@ scenario the message is being passed.
 
 ## Roadmap before release
 
-- Add the "you sent a message" messages
+- Add the "you sent a message" messages when reading miaou messages in
+  the content script
 - Make it clear who sends a message to who (using me/sender classes)
 - Make it possible to sign and encrypt at the same time
+- Make it possible to decrypt and verify at the same time
 - Handle errors correctly
 - Integrate with GMail
   - Find a way to mix miaou and gmail in popup
