@@ -64,11 +64,10 @@ scenario the message is being passed.
 
 ## Roadmap before release
 
-- Make the popup pretty (bootstrap)
 - Add the "you sent a message" messages
-- Make it clear who sends a message to who (add names in the discussion)
-- Handle errors correctly
+- Make it clear who sends a message to who (using me/sender classes)
 - Make it possible to sign and encrypt at the same time
+- Handle errors correctly
 - Integrate with GMail
   - Find a way to mix miaou and gmail in popup
   - Add buttons in gmail interface
