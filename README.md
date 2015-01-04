@@ -1,8 +1,8 @@
-# pgp-ext
+# erinome
 
 A Chrome extension to use PGP in your browser, using your local gpg installation.
 
-Has to be used with the native application [pgp-ext-app][0].
+Has to be used with the native application [erinome-native][0].
 
 ## Communications
 
@@ -67,7 +67,6 @@ scenario the message is being passed.
 - Make the popup pretty (bootstrap)
 - Add the "you sent a message" messages
 - Make it clear who sends a message to who (add names in the discussion)
-- Include pgp-ext-app into this repo
 - Handle errors correctly
 - Make it possible to sign and encrypt at the same time
 - Integrate with GMail
@@ -84,4 +83,4 @@ scenario the message is being passed.
 MIT license.
 
 
-  [0]: https://github.com/Ralt/pgp-ext-app
+  [0]: https://github.com/Ralt/erinome-native
