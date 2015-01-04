@@ -10,6 +10,6 @@ if (messages) {
     var miaouListener = require('./miaou-listener')(communicator, name);
     miaouListener.listen(messages);
 
-    var pgpExtListener = require('./pgp-ext-listener');
-    pgpExtListener.listen(communicator);
+    var erinomeListener = require('./erinome-listener');
+    erinomeListener.listen(communicator);
 }

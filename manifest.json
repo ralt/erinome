@@ -1,10 +1,10 @@
 {
     "manifest_version": 2,
-    "name": "pgp-ext",
+    "name": "erinome",
     "version": "1.0.0",
     "description": "Short description",
     "browser_action": {
-        "name": "pgp-ext",
+        "name": "erinome",
         "default_popup": "popup.html"
     },
     "background": {

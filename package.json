@@ -1,17 +1,17 @@
 {
-  "name": "pgp-ext",
+  "name": "erinome",
   "version": "1.0.0",
   "description": "A Chrome extension to use PGP in your browser, using your local gpg installation ",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ralt/pgp-ext.git"
+    "url": "https://github.com/Ralt/erinome.git"
   },
   "author": "Florian Margaine <florian@margaine.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Ralt/pgp-ext/issues"
+    "url": "https://github.com/Ralt/erinome/issues"
   },
-  "homepage": "https://github.com/Ralt/pgp-ext",
+  "homepage": "https://github.com/Ralt/erinome",
   "devDependencies": {
     "browserify": "^7.0.3",
     "uglify-js2": "^2.1.11"
