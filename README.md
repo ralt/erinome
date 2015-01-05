@@ -65,7 +65,7 @@ scenario the message is being passed.
 ## Roadmap before release
 
 - [x] Use HTML templates
-- Put the delivered extension in a folder
+- [x] Put the delivered extension in a folder
 - Add the "you sent a message" messages when reading miaou messages in
   the content script
 - Make it clear who sends a message to who (using me/sender classes)

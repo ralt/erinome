@@ -4,13 +4,13 @@ all:
 	make miaou
 
 background:
-	./node_modules/.bin/browserify background/index.js | ./node_modules/.bin/uglifyjs2 -mc > background.js
+	./node_modules/.bin/browserify src/background/index.js | ./node_modules/.bin/uglifyjs2 -mc > extension/background.js
 
 popup:
-	./node_modules/.bin/browserify popup/index.js | ./node_modules/.bin/uglifyjs2 -mc > popup.js
+	./node_modules/.bin/browserify src/popup/index.js | ./node_modules/.bin/uglifyjs2 -mc > extension/popup.js
 
 miaou:
-	./node_modules/.bin/browserify miaou/index.js | ./node_modules/.bin/uglifyjs2 -mc > miaou.js
+	./node_modules/.bin/browserify src/miaou/index.js | ./node_modules/.bin/uglifyjs2 -mc > extension/miaou.js
 
 debug:
 	make debug-background
@@ -18,13 +18,12 @@ debug:
 	make debug-miaou
 
 debug-background:
-	./node_modules/.bin/browserify -d background/index.js > background.js
+	./node_modules/.bin/browserify -d src/background/index.js > extension/background.js
 
 debug-popup:
-	./node_modules/.bin/browserify -d popup/index.js > popup.js
+	./node_modules/.bin/browserify -d src/popup/index.js > extension/popup.js
 
 debug-miaou:
-	./node_modules/.bin/browserify -d miaou/index.js > miaou.js
+	./node_modules/.bin/browserify -d src/miaou/index.js > extension/miaou.js
 
 .PHONY: background popup miaou debug-background debug-popup debug-miaou
-

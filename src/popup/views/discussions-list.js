@@ -1,7 +1,11 @@
 'use strict';
 
-var byId = function(id) { return document.getElementById(id); };
 var makeCollapsible = require('../ui/collapsible.js');
+
+var byId = function(id) { return document.getElementById(id); };
+
+var template = byId('import-user').import.querySelector('template');
+
 
 module.exports = function(viewManager, communicator) {
     var name = 'discussions-list';
@@ -35,13 +39,11 @@ function createDiscussions(discussionsContainer, viewManager) {
 
 	Object.keys(users).forEach(function(user) {
 	    createDiscussion(discussionsContainer, users[user], viewManager);
-	    discussionsContainer.appendChild(discussion);
 	});
     };
 }
 
 function createDiscussion(container, user, viewManager) {
-    var template = byId('import-user').import.querySelector('template');
     var clone = document.importNode(template.content, true);
     var tr = clone.querySelector('tr');
     tr.addEventListener('click', function() {

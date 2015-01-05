@@ -1,4 +1,4 @@
 node_modules/
-background.js
-popup.js
-miaou.js
+extension/background.js
+extension/popup.js
+extension/miaou.js
