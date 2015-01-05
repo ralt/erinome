@@ -5,6 +5,9 @@
     <title>erinome</title>
     <link rel="stylesheet" href="assets/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
+    <link rel="import" href="imports/discussion.html" id="import-discussion">
+    <link rel="import" href="imports/message.html" id="import-message">
+    <link rel="import" href="imports/user.html" id="import-user">
   </head>
   <body>
 
@@ -46,19 +49,8 @@
       </fieldset>
     </div>
 
-    <div class="view container" id="discussion">
-      <div class="back" id="back">Back</div>
-      <div class="row">
-	<label>Conversation with <span id="name"></span></label>
-      </div>
-      <div class="row">
-	<div id="messages"></div>
-      </div>
-      <div class="row">
-	<textarea name="input" id="input" class="form-control"></textarea>
-	<input type="submit" value="Send" id="send" class="form-control btn btn-default">
-      </div>
-    </div>
+    <div class="view container" id="discussion"></div>
+
     <script src="popup.js"></script>
   </body>
 </html>

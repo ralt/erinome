@@ -1,5 +1,6 @@
 'use strict';
 
+var byId = function(id) { return document.getElementById(id); };
 var makeCollapsible = require('../ui/collapsible.js');
 
 module.exports = function(viewManager, communicator) {
@@ -33,15 +34,16 @@ function createDiscussions(discussionsContainer, viewManager) {
 	if (!Object.keys(users).length) return;
 
 	Object.keys(users).forEach(function(user) {
-	    var discussion = createDiscussion(users[user], viewManager);
+	    createDiscussion(discussionsContainer, users[user], viewManager);
 	    discussionsContainer.appendChild(discussion);
 	});
     };
 }
 
-function createDiscussion(user, viewManager) {
-    var tr = document.createElement('tr');
-    tr.className = 'discussion';
+function createDiscussion(container, user, viewManager) {
+    var template = byId('import-user').import.querySelector('template');
+    var clone = document.importNode(template.content, true);
+    var tr = clone.querySelector('tr');
     tr.addEventListener('click', function() {
 	viewManager.setView('discussion');
 	var discussion = viewManager.getView('discussion');
@@ -49,15 +51,13 @@ function createDiscussion(user, viewManager) {
 	discussion.run();
     });
 
-    var userTd = document.createElement('td');
+    var userTd = clone.querySelector('td');
     userTd.textContent = user.name;
-    tr.appendChild(userTd);
 
-    var emailTd = document.createElement('td');
+    var emailTd = userTd.nextElementSibling;
     emailTd.textContent = user.email;
-    tr.appendChild(emailTd);
 
-    return tr;
+    container.appendChild(clone);
 }
 
 function setupAddUserForm(communicator, initArgs) {
