@@ -46,13 +46,26 @@ function handleChildren(children) {
 function handleText(child) {
     // innerText keeps the \n while textContent doesn't
     var text = child.innerText;
-    var message = text.match(new RegExp('#pgp@' + name + '\\n([\\s\\S]*)'));
+    var sender = child.previousElementSibling.textContent.trim();
+
+    var message = text.match(new RegExp('#pgp@(\\w+)\\n([\\s\\S]*)'));
     if (!message) return;
 
-    communicator.send({
-	action: 'decrypt',
-	message: message[1],
-	name: name,
-	sender: child.previousElementSibling.textContent
-    });
+    if (sender === name) {
+	communicator.send({
+	    action: 'addDiscussion',
+	    name: message[1],
+	    sender: sender,
+	    type: 'encrypted'
+	});
+    }
+
+    if (message[1] === name) {
+	communicator.send({
+	    action: 'decrypt',
+	    message: message[2],
+	    name: name,
+	    sender: sender
+	});
+    }
 }
