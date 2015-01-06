@@ -75,7 +75,7 @@ function setupDiscussionElements(clone, user, communicator) {
 function getDiscussions(user, communicator) {
     communicator.on('decrypted', function(request) {
 	if (request.sender === user.name) {
-	    addMessage(request.message);
+	    addMessage(request);
 	}
     });
 
@@ -90,10 +90,22 @@ function getDiscussions(user, communicator) {
 }
 
 function addMessage(message) {
-    // @todo use the "me" class when the message is sent by me.
     var msgClone = document.importNode(messageTemplate.content, true);
 
-    msgClone.querySelector('.message').textContent = message;
+    var msg = msgClone.querySelector('.message');
+    msg.textContent = message.message;
+
+    switch (message.type) {
+    case 'me':
+	msg.className += ' me';
+	break;
+    case 'sender':
+	msg.className += ' sender';
+	break;
+    case 'me:encrypted':
+	msg.className += ' me-encrypted';
+	break;
+    }
 
     byId('messages').appendChild(msgClone);
 }

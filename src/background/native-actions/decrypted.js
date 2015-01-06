@@ -13,7 +13,8 @@ function addMessage(communicator, discussions, message) {
     communicator.send({
     	action: 'decrypted',
 	message: message.text,
-	sender: message.sender
+	sender: message.sender,
+	type: 'sender'
     });
     discussions[message.sender].push({
 	type: 'sender',
