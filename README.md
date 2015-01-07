@@ -80,8 +80,6 @@ scenario the message is being passed.
 - [x] Add the "you sent a message" messages when reading miaou messages in
   the content script
 - [x] Make it clear who sends a message to who (using me/sender classes)
-- Make it possible to sign and encrypt at the same time
-- Make it possible to decrypt and verify at the same time
 - [x] Handle errors correctly
 - Integrate with GMail
   - Find a way to mix miaou and gmail in popup
@@ -91,6 +89,7 @@ scenario the message is being passed.
 	- Encrypt
 	- Sign and encrypt
 	- Decrypt
+- Use chrome.notifications for errors instead of alert()
 
 ## License
 
