@@ -48,3 +48,7 @@ fieldset.collapsible legend {
 .message.me::before {
     content: "I said: ";
 }
+
+.message.me-encrypted::before {
+    content: "I sent an encrypted message";
+}
