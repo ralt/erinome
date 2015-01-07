@@ -82,7 +82,7 @@ scenario the message is being passed.
 - [x] Make it clear who sends a message to who (using me/sender classes)
 - [x] Handle errors correctly
 - Integrate with GMail
-  - Find a way to mix miaou and gmail in popup
+  - [x] Find a way to mix miaou and gmail in popup
   - Add buttons in gmail interface
     - Verify
 	- Sign

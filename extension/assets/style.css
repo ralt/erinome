@@ -52,3 +52,8 @@ fieldset.collapsible legend {
 .message.me-encrypted::before {
     content: "I sent an encrypted message";
 }
+
+.switcher {
+    width: 50%;
+    margin: auto;
+}
