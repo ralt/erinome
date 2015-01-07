@@ -4,6 +4,17 @@ A Chrome extension to use PGP in your browser, using your local gpg installation
 
 Has to be used with the native application [erinome-native][0].
 
+## Instructions for developers
+
+```
+$ git clone https://github.com/Ralt/erinome.git
+$ cd erinome/
+$ npm install
+$ make debug
+```
+
+Then load the extension and hack away!
+
 ## Communications
 
 *Because I needed to clear up my head.*
