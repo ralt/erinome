@@ -11,7 +11,8 @@ var discussions = {};
 
 var nativeActions = {
     encrypted: require('./native-actions/encrypted')(communicator),
-    decrypted: require('./native-actions/decrypted')(communicator, discussions)
+    decrypted: require('./native-actions/decrypted')(communicator, discussions),
+    error: require('./native-actions/error')()
 };
 
 var port = chrome.runtime.connectNative('com.margaine.erinome_native');
