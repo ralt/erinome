@@ -81,6 +81,7 @@ scenario the message is being passed.
   the content script
 - [x] Make it clear who sends a message to who (using me/sender classes)
 - [x] Handle errors correctly
+- [ ] Introduce 6to5
 - Integrate with GMail
   - [x] Find a way to mix miaou and gmail in popup
   - Add buttons in gmail interface

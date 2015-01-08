@@ -1,5 +1,8 @@
 'use strict';
 
+// Can't require it yet because: https://github.com/6to5/6to5/issues/427
+//require("6to5/polyfill");
+
 var storage = require('../lib/storage');
 var communicator = require('../lib/communicator');
 

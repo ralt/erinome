@@ -2,7 +2,7 @@
 
 module.exports = function(el, viewsManager) {
     return {
-	setup: function() {
+	setup() {
 	    el.addEventListener('change', function() {
 		viewsManager.setView(this.value);
 	    });

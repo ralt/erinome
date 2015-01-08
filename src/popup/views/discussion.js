@@ -11,16 +11,16 @@ module.exports = function(viewsManager, communicator) {
     var user;
 
     return {
-	getName: function() {
+	getName() {
 	    return name;
 	},
-	getElement: function() {
+	getElement() {
 	    return element;
 	},
-	setUser: function(u) {
+	setUser(u) {
 	    user = u;
 	},
-	run: function() {
+	run() {
 	    setup(user, communicator, viewsManager);
 	}
     };

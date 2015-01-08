@@ -13,10 +13,12 @@
   },
   "homepage": "https://github.com/Ralt/erinome",
   "devDependencies": {
+    "6to5ify": "^3.1.2",
     "browserify": "^7.0.3",
     "uglify-js2": "^2.1.11"
   },
   "dependencies": {
+    "6to5": "^2.9.0",
     "bluebird": "^2.4.0"
   }
 }

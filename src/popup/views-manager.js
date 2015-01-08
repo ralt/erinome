@@ -3,24 +3,22 @@
 var views = [];
 var def;
 
-exports.add = function(view) {
-    views[view.getName()] = view;
-};
-
-exports.setDefault = function(view) {
-    def = view.getName();
-};
-
-exports.run = function() {
-    showView(def);
-};
-
-exports.setView = function(name) {
-    showView(name);
-};
-
-exports.getView = function(name) {
-    return views[name];
+module.exports = {
+    add(view) {
+	views[view.getName()] = view;
+    },
+    setDefault(view) {
+	def = view.getName();
+    },
+    run() {
+	showView(def);
+    },
+    setView(name) {
+	showView(name);
+    },
+    getView(name) {
+	return views[name];
+    }
 };
 
 function showView(name) {

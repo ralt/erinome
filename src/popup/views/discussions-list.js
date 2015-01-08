@@ -17,10 +17,10 @@ module.exports = function(viewManager, communicator) {
     makeCollapsible(document.querySelector('#add-user')).collapse();
 
     return {
-	getName: function() {
+	getName() {
 	    return name;
 	},
-	getElement: function() {
+	getElement() {
 	    return element;
 	}
     };

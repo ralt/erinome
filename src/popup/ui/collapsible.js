@@ -10,7 +10,7 @@ module.exports = function(fieldset) {
     });
 
     return {
-	collapse: function() {
+	collapse() {
 	    collapsed = true;
 	    collapse(fieldset);
 	}

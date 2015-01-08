@@ -7,10 +7,10 @@ module.exports = function(viewsManager, communicator) {
     var element = byId('gmail');
 
     return {
-	getName: function() {
+	getName() {
 	    return name;
 	},
-	getElement: function() {
+	getElement() {
 	    return element;
 	}
     };
