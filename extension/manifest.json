@@ -2,7 +2,8 @@
     "manifest_version": 2,
     "name": "erinome",
     "version": "1.0.0",
-    "description": "Short description",
+    "homepage_url": "https://github.com/Ralt/erinome",
+    "description": "A Chrome extension to use PGP in your browser, using your local gpg installation",
     "browser_action": {
         "name": "erinome",
         "default_popup": "popup.html"
@@ -13,8 +14,18 @@
     "content_scripts": [{
         "matches": ["*://dystroy.org/miaou/*"],
         "js": ["miaou.js"]
+    }, {
+        "matches": ["https://mail.google.com/mail/u/0/*"],
+        "js": ["gmail.js"]
     }],
     "permissions": [
-        "*://dystroy.org/miaou/*", "nativeMessaging", "storage"
-    ]
+        "*://dystroy.org/miaou/*",
+        "https://mail.google.com/mail/u/0/*",
+        "nativeMessaging",
+        "storage"
+    ],
+    "options_ui": {
+        "page": "options.html",
+        "chrome_style": true
+    }
 }

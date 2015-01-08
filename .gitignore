@@ -2,3 +2,5 @@ node_modules/
 extension/background.js
 extension/popup.js
 extension/miaou.js
+extension/gmail.js
+extension/options.js
