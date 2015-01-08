@@ -54,8 +54,8 @@ function handleText(child) {
     if (sender === name) {
 	communicator.send({
 	    action: 'addDiscussion',
-	    name: message[1],
-	    sender: sender,
+	    name: sender,
+	    sender: message[1],
 	    type: 'encrypted'
 	});
     }
@@ -64,8 +64,8 @@ function handleText(child) {
 	communicator.send({
 	    action: 'decrypt',
 	    message: message[2],
-	    name: name,
-	    sender: sender
+	    name: sender,
+	    sender: name
 	});
     }
 }
