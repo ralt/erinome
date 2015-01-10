@@ -4,8 +4,8 @@ module.exports = function() {
     let main = document.createElement('div');
     main.className = 'erinome-buttons';
     let defaultButton = getDefaultButton();
-    for (let button of [createSignButton, createSignEncryptButton].map(x => x(defaultButton))) {
-	main.appendChild(button);
+    for (let buttonMaker of [createSignButton, createSignEncryptButton]) {
+	main.appendChild(buttonMaker(defaultButton));
     }
     return main;
 };
