@@ -3,19 +3,27 @@
 var byId = x => document.getElementById(x);
 var byClass = x => document.querySelector('.' + x);
 
+var backgroundQueue = require('../background-queue');
+
 module.exports = function(communicator, buttonsMaker) {
     if (byClass('erinome-buttons')) return;
     let container = findContainer();
     let buttons = buttonsMaker({
-	sign: signHandler(communicator),
-	signEncrypt: signEncryptHandler(communicator)
+	sign: signHandler(backgroundQueue(communicator)),
+	signEncrypt: signEncryptHandler(backgroundQueue(communicator))
     });
     container.insertBefore(buttons, container.firstChild);
 };
 
 function signHandler(communicator) {
     return function() {
-	console.log('signHandler');
+	let message = byClass('editable');
+	communicator.send({
+	    action: 'sign',
+	    text: message.innerText // textContent doesn't keep \n
+	}).then(function(text) {
+	    message.innerText = text.text;
+	}).done();
     };
 }
 
