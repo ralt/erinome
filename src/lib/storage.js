@@ -6,7 +6,10 @@ var storage = {};
 
 storage.get = function(key) {
     return new Promise(function(resolve, reject) {
-	chrome.storage.local.get(key, resolve);
+	chrome.storage.local.get(key, function(items) {
+	    if (items) resolve(items);
+	    else reject(new Error(chrome.runtime.lastError));
+	});
     });
 };
 
