@@ -1,11 +1,15 @@
 'use strict';
 
-module.exports = function() {
+module.exports = function(handlers) {
     let main = document.createElement('div');
     main.className = 'erinome-buttons';
     let defaultButton = getDefaultButton();
-    for (let buttonMaker of [createSignButton, createSignEncryptButton]) {
-	main.appendChild(buttonMaker(defaultButton));
+    let buttons = [
+	createSignButton(defaultButton, handlers.sign),
+	createSignEncryptButton(defaultButton, handlers.signEncrypt)
+    ];
+    for (let button of buttons) {
+	main.appendChild(button);
     }
     return main;
 };
@@ -19,18 +23,20 @@ function getDefaultButton() {
     return b;
 }
 
-function createSignButton(defaultButton) {
+function createSignButton(defaultButton, clickHandler) {
     let b = defaultButton.cloneNode();
     b.className = 'erinome-button';
     b.textContent = 'S';
     b.title = 'Sign';
+    b.addEventListener('click', clickHandler);
     return b;
 }
 
-function createSignEncryptButton(defaultButton) {
+function createSignEncryptButton(defaultButton, clickHandler) {
     let b = defaultButton.cloneNode();
     b.className = 'erinome-button';
     b.textContent = 'SE';
     b.title = 'Sign&Encrypt';
+    b.addEventListener('click', clickHandler);
     return b;
 }

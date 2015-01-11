@@ -83,6 +83,7 @@ function getDiscussions(user, communicator) {
 	action: 'getMessages',
 	user: user
     }, function(messages) {
+	if (!messages) return;
 	messages.forEach(function(message) {
 	    addMessage(message);
 	});

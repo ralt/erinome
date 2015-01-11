@@ -3,11 +3,27 @@
 var byId = x => document.getElementById(x);
 var byClass = x => document.querySelector('.' + x);
 
-module.exports = function(buttons) {
+module.exports = function(communicator, buttonsMaker) {
     if (byClass('erinome-buttons')) return;
     let container = findContainer();
+    let buttons = buttonsMaker({
+	sign: signHandler(communicator),
+	signEncrypt: signEncryptHandler(communicator)
+    });
     container.insertBefore(buttons, container.firstChild);
 };
+
+function signHandler(communicator) {
+    return function() {
+	console.log('signHandler');
+    };
+}
+
+function signEncryptHandler(communicator) {
+    return function() {
+	console.log('signEncryptHandler');
+    };
+}
 
 function findContainer() {
     // We have to find the container from the editable
