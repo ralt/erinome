@@ -19,15 +19,11 @@ module.exports = function(fieldset) {
 
 function uncollapse(fieldset) {
     var elements = fieldset.querySelectorAll('*');
-    [].forEach.call(elements, function(el) {
-	el.style.display = 'block';
-    });
+    Array.from(elements).forEach(el => el.style.display = 'block');
 }
 
 function collapse(fieldset) {
     var elements = fieldset.querySelectorAll('*');
-    [].forEach.call(elements, function(el) {
-	el.style.display = 'none';
-    });
+    Array.from(elements).forEach(el => el.style.display = 'none');
     fieldset.querySelector('legend').style.display = 'block';
 }
