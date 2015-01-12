@@ -22,8 +22,8 @@ function signHandler(communicator) {
 	communicator.send({
 	    action: 'sign',
 	    text: message.innerText // textContent doesn't keep \n
-	}).then(function(text) {
-	    message.innerText = text.text;
+	}).then(function(obj) {
+	    message.innerText = obj.text.join('\n');
 	}).done();
     };
 }

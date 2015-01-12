@@ -2,7 +2,7 @@
 
 module.exports = function(communicator) {
     return function(obj) {
-	communicator.send({
+	communicator.sendTab({
 	    action: 'gmailqueue',
 	    id: obj.id,
 	    text: obj.text
