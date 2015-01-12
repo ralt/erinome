@@ -8,9 +8,10 @@ var backgroundQueue = require('../background-queue');
 module.exports = function(communicator, buttonsMaker) {
     if (byClass('erinome-buttons')) return;
     let container = findContainer();
+    let queue = backgroundQueue(communicator);
     let buttons = buttonsMaker({
-	sign: signHandler(backgroundQueue(communicator)),
-	signEncrypt: signEncryptHandler(backgroundQueue(communicator))
+	sign: signHandler(queue),
+	signEncrypt: signEncryptHandler(queue)
     });
     container.insertBefore(buttons, container.firstChild);
 };
