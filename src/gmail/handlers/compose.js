@@ -3,15 +3,12 @@
 var byId = x => document.getElementById(x);
 var byClass = x => document.querySelector('.' + x);
 
-var backgroundQueue = require('../background-queue');
-
 module.exports = function(communicator, buttonsMaker) {
     if (byClass('erinome-buttons')) return;
     let container = findContainer();
-    let queue = backgroundQueue(communicator);
     let buttons = buttonsMaker({
-	sign: signHandler(queue),
-	signEncrypt: signEncryptHandler(queue)
+	sign: signHandler(communicator),
+	signEncrypt: signEncryptHandler(communicator)
     });
     container.insertBefore(buttons, container.firstChild);
 };
