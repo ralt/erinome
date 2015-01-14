@@ -30,8 +30,30 @@ function signHandler(communicator) {
 
 function signEncryptHandler(communicator) {
     return function() {
-	console.log('signEncryptHandler');
+	let message = byClass('editable');
+	let recipient = findRecipient(message);
+	communicator.send({
+	    action: 'signencrypt',
+	    text: message.innerText,
+	    recipient: recipient.getAttribute('email')
+	}).then(function(obj) {
+	    message.innerText = obj.text.join('\n');
+	}).done();
     };
+}
+
+function findRecipient(editable) {
+    // Super Gmail Specific Thingie
+    return findParent(
+	findParent(
+	    findParent(
+		editable,
+		'TABLE'
+	    ),
+	    'TABLE'
+	),
+	'TABLE'
+    ).querySelector('.oj>div>div>span');
 }
 
 function findContainer() {

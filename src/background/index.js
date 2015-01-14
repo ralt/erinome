@@ -13,6 +13,7 @@ var nativeActions = {
     encrypted: require('./native-actions/encrypted')(communicator),
     decrypted: require('./native-actions/decrypted')(communicator, discussions),
     signed: require('./native-actions/signed')(communicator),
+    signedencrypted: require('./native-actions/signedencrypted')(communicator),
     error: require('./native-actions/error')()
 };
 
@@ -25,7 +26,8 @@ var actions = {
     decrypt: require('./actions/decrypt')(port, user),
     getMessages: require('./actions/getMessages')(discussions),
     addDiscussion: require('./actions/addDiscussion')(discussions),
-    sign: require('./actions/sign')(port)
+    sign: require('./actions/sign')(port),
+    signencrypt: require('./actions/signencrypt')(port)
 };
 
 Object.keys(actions).forEach(function(action) {
