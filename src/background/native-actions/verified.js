@@ -5,7 +5,7 @@ module.exports = function(communicator) {
 	communicator.sendTab({
 	    action: 'gmailqueue',
 	    id: obj.id,
-	    status: obj.status
+	    result: obj.result
 	});
     };
 };

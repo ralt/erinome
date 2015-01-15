@@ -8,7 +8,7 @@ module.exports = function(communicator) {
 
     let addButtonsMaker = addButtons(communicator);
     let messages = qs('[role=presentation]>tr>td>div:nth-child(2)>div:nth-child(2)>div>div:nth-child(3)');
-    messages.addEventListener('click', addButtonsMaker);
+    //messages.addEventListener('click', addButtonsMaker);
     addButtonsMaker.call(messages);
 };
 
@@ -59,7 +59,7 @@ function verifyEmail(communicator) {
 	    action: 'verify',
 	    text: email.innerText
 	}).then(function(obj) {
-	    self.style.background = obj.status === 0 ? 'green' : 'red';
+	    self.style.background = obj.result === 0 ? 'green' : 'red';
 	}).done();
     };
 }

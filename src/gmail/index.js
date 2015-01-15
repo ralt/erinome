@@ -5,6 +5,7 @@ require('6to5/polyfill');
 var buttons = require('./buttons');
 var communicator = require('../lib/communicator');
 var backgroundQueue = require('./background-queue');
+var queue = backgroundQueue(communicator);
 
 var regs = [
     /\?compose=/, // 0
@@ -22,6 +23,6 @@ checkFunctions();
 function checkFunctions() {
     let hash = window.location.hash;
     for (let i = 0; i < regs.length; i++) {
-	if (regs[i].test(hash)) return handlers[i](backgroundQueue(communicator), buttons);
+	if (regs[i].test(hash)) return handlers[i](queue, buttons);
     }
 }
