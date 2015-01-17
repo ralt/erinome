@@ -23,9 +23,5 @@
         "https://mail.google.com/mail/u/0/*",
         "nativeMessaging",
         "storage"
-    ],
-    "options_ui": {
-        "page": "options.html",
-        "chrome_style": true
-    }
+    ]
 }

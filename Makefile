@@ -1,45 +1,27 @@
-all:
-	make background
-	make popup
-	make miaou
-	make gmail
-	make options
+all: extension/background.js \
+     extension/popup.js \
+     extension/miaou.js \
+     extension/gmail.js
 
-background:
+dist:
 	./node_modules/.bin/browserify -t 6to5ify src/background/index.js | ./node_modules/.bin/uglifyjs2 -mc > extension/background.js
-
-popup:
 	./node_modules/.bin/browserify -t 6to5ify src/popup/index.js | ./node_modules/.bin/uglifyjs2 -mc > extension/popup.js
-
-miaou:
 	./node_modules/.bin/browserify -t 6to5ify src/miaou/index.js | ./node_modules/.bin/uglifyjs2 -mc > extension/miaou.js
-
-gmail:
 	./node_modules/.bin/browserify -t 6to5ify src/gmail/index.js | ./node_modules/.bin/uglifyjs2 -mc > extension/gmail.js
 
-options:
-	./node_modules/.bin/browserify -t 6to5ify src/options/index.js | ./node_modules/.bin/uglifyjs2 -mc > extension/options.js
+BACKGROUND_FILES=$(shell find src/background/ -name '*.js')
+POPUP_FILES=$(shell find src/popup/ -name '*.js')
+MIAOU_FILE=$(shell find src/miaou/ -name '*.js')
+GMAIL_FILES=$(shell find src/gmail/ -name '*.js')
 
-debug:
-	make debug-background
-	make debug-popup
-	make debug-miaou
-	make debug-gmail
-	make debug-options
-
-debug-background:
+extension/background.js: $(BACKGROUND_FILES)
 	./node_modules/.bin/browserify -d -t 6to5ify src/background/index.js > extension/background.js
 
-debug-popup:
+extension/popup.js: $(POPUP_FILES)
 	./node_modules/.bin/browserify -d -t 6to5ify src/popup/index.js > extension/popup.js
 
-debug-miaou:
+extension/miaou.js: $(MIAOU_FILES)
 	./node_modules/.bin/browserify -d -t 6to5ify src/miaou/index.js > extension/miaou.js
 
-debug-gmail:
+extension/gmail.js: $(GMAIL_FILES)
 	./node_modules/.bin/browserify -d -t 6to5ify src/gmail/index.js > extension/gmail.js
-
-debug-options:
-	./node_modules/.bin/browserify -d -t 6to5ify src/options/index.js > extension/options.js
-
-.PHONY: background popup miaou gmail options debug-background debug-popup debug-miaou debug-gmail debug-options
