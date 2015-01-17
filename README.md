@@ -85,10 +85,9 @@ scenario the message is being passed.
 - Integrate with GMail
   - [x] Find a way to mix miaou and gmail in popup
   - Add buttons in gmail interface
-    - Verify
-	- Sign
-	- Encrypt
-	- Sign and encrypt
+    - [x] Verify
+	- [x] Sign
+	- [x] Sign and encrypt
 	- Decrypt
 - Use chrome.notifications for errors instead of alert()
 
