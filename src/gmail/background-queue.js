@@ -14,7 +14,7 @@ module.exports = function(communicator) {
     return {
 	send(msg, cb) {
 	    return new Promise(function(resolve, reject) {
-		msg.id = id++;
+		msg.id = ++id;
 		callbacks[id] = resolve;
 		communicator.send(msg);
 	    });

@@ -7,15 +7,20 @@ module.exports = function(communicator) {
     if (!onDiscussionPage()) return;
 
     let addButtonsMaker = addButtons(communicator);
+    let verifyButtonMaker = addVerifyButton(communicator);
     let messages = qs('[role=presentation]>tr>td>div:nth-child(2)>div:nth-child(2)>div>div:nth-child(3)');
-    //messages.addEventListener('click', addButtonsMaker);
+    Array.from(messages.querySelectorAll('.kv'))
+	.forEach(el => el.addEventListener('click', function() {
+	    verifyButtonMaker(this);
+	}));
     addButtonsMaker.call(messages);
 };
 
 function addButtons(communicator) {
     return function() {
 	let erinomeVerify = Array.from(this.querySelectorAll('.erinome-verify'));
-	if (erinomeVerify) erinomeVerify.forEach(el => el.remove());
+	if (erinomeVerify.length !== 0) return;
+
 	Array.from(this.children)
 	    .filter(el => el.getAttribute('tabindex') !== null)
 	    .forEach(addVerifyButton(communicator));
