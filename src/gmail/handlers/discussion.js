@@ -11,6 +11,7 @@ module.exports = function(communicator) {
     let messages = qs('[role=presentation]>tr>td>div:nth-child(2)>div:nth-child(2)>div>div:nth-child(3)');
     Array.from(messages.querySelectorAll('.kv'))
 	.forEach(el => el.addEventListener('click', function() {
+	    if (this.querySelectorAll('.erinome-verify').length !== 0) return;
 	    verifyButtonMaker(this);
 	}));
     addButtonsMaker.call(messages);
@@ -18,8 +19,7 @@ module.exports = function(communicator) {
 
 function addButtons(communicator) {
     return function() {
-	let erinomeVerify = Array.from(this.querySelectorAll('.erinome-verify'));
-	if (erinomeVerify.length !== 0) return;
+	if (this.querySelectorAll('.erinome-verify').length !== 0) return;
 
 	Array.from(this.children)
 	    .filter(el => el.getAttribute('tabindex') !== null)
@@ -57,14 +57,24 @@ function findParent(el, nodeName) {
 }
 
 function verifyEmail(communicator) {
-    return function() {
+    return function(e) {
+	e.stopPropagation();
 	let self = this;
 	let email = findParent(this, 'TABLE').parentNode.parentNode.children[5];
+	let text = cleanText(email.innerText);
 	communicator.send({
 	    action: 'verify',
-	    text: email.innerText
+	    text: text
 	}).then(function(obj) {
 	    self.style.background = obj.result === 0 ? 'green' : 'red';
 	}).done();
     };
+}
+
+/**
+ * Email texts on gmail sometimes have ugly chars.
+ * Namely, &nbsp;.
+ */
+function cleanText(text) {
+    return text.replace(/\u00A0/g, ' ');
 }
