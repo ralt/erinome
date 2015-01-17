@@ -3,12 +3,18 @@
 var qs = x => document.querySelector(x);
 var qsa = x => document.querySelectorAll(x);
 
-module.exports = function(communicator) {
-    if (!onDiscussionPage()) return;
+module.exports = function init(communicator, _, acc = 0) {
+    if (!onDiscussionPage()) {
+	// if we're on the discussion page but without messages... it means we're loading.
+	// So we have to wait a little bit and try again. Try 3 times max.
+	if (acc < 3) setTimeout(() => init(communicator, null, ++acc), 1000);
+	return;
+    }
 
+    let messages = qs('[role=presentation]>tr>td>div:nth-child(2)>div:nth-child(2)>div>div:nth-child(3)');
     let addButtonsMaker = addButtons(communicator);
     let verifyButtonMaker = addVerifyButton(communicator);
-    let messages = qs('[role=presentation]>tr>td>div:nth-child(2)>div:nth-child(2)>div>div:nth-child(3)');
+
     Array.from(messages.querySelectorAll('.kv'))
 	.forEach(el => el.addEventListener('click', function() {
 	    if (this.querySelectorAll('.erinome-verify').length !== 0) return;
