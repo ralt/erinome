@@ -11,6 +11,10 @@ module.exports = function init(communicator, _, acc = 0) {
 	return;
     }
 
+    initVerify(communicator);
+};
+
+function initVerify(communicator) {
     let messages = qs('[role=presentation]>tr>td>div:nth-child(2)>div:nth-child(2)>div>div:nth-child(3)');
     let addButtonsMaker = addButtons(communicator);
     let verifyButtonMaker = addVerifyButton(communicator);
@@ -21,7 +25,7 @@ module.exports = function init(communicator, _, acc = 0) {
 	    verifyButtonMaker(this);
 	}));
     addButtonsMaker.call(messages);
-};
+}
 
 function addButtons(communicator) {
     return function() {
