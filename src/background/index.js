@@ -1,5 +1,7 @@
 'use strict';
 
+require('6to5/polyfill');
+
 var storage = require('../lib/storage');
 var communicator = require('../lib/communicator');
 var native = require('./native');
